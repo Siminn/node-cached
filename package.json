@@ -29,7 +29,8 @@
   },
   "dependencies": {
     "bluebird": "^3.3.3",
-    "memcached": "^2.2.2"
+    "memcached": "^2.2.2",
+    "mongodb": "^3.2.1"
   },
   "devDependencies": {
     "assertive": "^2.1.0",
