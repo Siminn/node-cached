@@ -9,7 +9,7 @@ const backendOptions = {
     hosts: `${process.env.MEMCACHED__HOST || '127.0.0.1'}:11211`,
   },
   mongodb: {
-    url: `${process.env.MONGODB_URL}`,
+    url: `${process.env.MONGODB_URL || 'mongodb://localhost/testdb'}`,
     collectionName: '__testcache',
   },
 };
@@ -18,7 +18,7 @@ module.exports = function withBackends(createTestCases) {
   ['mongodb', 'memory', 'memcached'].forEach(backendType => {
     describe(`with backend "${backendType}"`, () => {
       const cache = new Cache({
-        backend: defaults({ type: backendType }, backendOptions),
+        backend: defaults({ type: backendType }, backendOptions[backendType]),
         name: 'awesome-name',
         debug: true,
       });
